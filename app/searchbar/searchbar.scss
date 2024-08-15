@@ -1,0 +1,28 @@
+@import '../globals.scss';
+
+.searchbarContainer {
+  @include font-16-24-400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: $white-smoke;
+  border-radius: 20px;
+  gap: 8px;
+  .searchIcon {
+    color: $dim-gray;
+  }
+  input[type='text'] {
+    flex: 1;
+    border: none;
+    background-color: inherit;
+    color: $black;
+    ::placeholder {
+      color: $dim-gray;
+    }
+    &:focus-visible {
+      outline: none;
+      outline-offset: 0;
+    }
+  }
+}

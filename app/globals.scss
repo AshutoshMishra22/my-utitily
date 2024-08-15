@@ -1,0 +1,44 @@
+@import '~bootstrap/scss/bootstrap';
+// Mixins
+@mixin font-16-24-400 {
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@mixin font-16-24-500 {
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@mixin font-16-24-700 {
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+// MIXIN END
+
+// colors
+$ghost-white: #f8f8fb;
+$dim-gray: #6e6f76;
+$white-smoke: #ededf0;
+$black: #161823;
+//END Colors
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+}
+.app-container {
+  padding: 0 1rem;
+  background-color: $ghost-white;
+  .app-title {
+    @include font-16-24-700;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    color: $black;
+  }
+}
