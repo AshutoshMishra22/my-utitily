@@ -1,17 +1,18 @@
-import CardComponent from '../card';
+import CardComponent, { CardType } from '../card';
 import './cardList.scss';
 
-type Props = { list: Array<Record<string, string>> };
+type Props = { list: Array<Record<string, string>>; cardType?: CardType };
 
-export default function CardListComponent({ list }: Props) {
+export default function CardListComponent({ list, cardType }: Props) {
   return (
     <section className='cardListContainer'>
       <div className='cardListOverlay'>
-        {list.map(({ imgSrc, title, details }) => (
+        {list.map(({ imgSrc, title, ...restProps }) => (
           <CardComponent
             imgSrc={imgSrc}
             title={title}
-            details={details}
+            cardType={cardType}
+            {...restProps}
           />
         ))}
       </div>
