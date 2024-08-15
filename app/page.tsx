@@ -35,6 +35,13 @@ export default function page({}: Props) {
         list={RESTURANT_LIST}
         cardType={CardType.SMALL_CARD}
       />
+      <section className='primaryTrendingHeading'>
+        {HOMEPAGE_TRENDING_HEADING}
+      </section>
+      <CardListComponent
+        list={RESTURANT_LIST}
+        cardType={CardType.SMALL_CARD}
+      />
     </>
   );
 }

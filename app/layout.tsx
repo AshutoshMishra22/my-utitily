@@ -3,6 +3,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.scss';
+import AppNavigator from './component/AppNavigator/AppNavigator';
 
 const inter = Inter({ subsets: ['latin'] });
 config.autoAddCss = false;
@@ -24,6 +25,7 @@ export default function RootLayout({
           <section className='app-title'>Foodie</section>
           {children}
         </div>
+        <AppNavigator />
       </body>
     </html>
   );

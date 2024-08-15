@@ -1,0 +1,15 @@
+@import '../../globals.scss';
+
+.appNavigatorContainer {
+  position: fixed;
+  z-index: 5;
+  padding: 1rem 2rem;
+  bottom: 0;
+  background-color: $white;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  .active {
+    color: $tomato-red;
+  }
+}
