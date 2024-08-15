@@ -1,0 +1,12 @@
+@import '../../globals.scss';
+
+.cardListContainer {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+  .cardListOverlay {
+    display: flex;
+    gap: 12px;
+    width: fit-content;
+  }
+}

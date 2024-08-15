@@ -1,0 +1,29 @@
+@import '../../globals.scss';
+
+.cardContainer {
+  background-color: $white;
+  width: fit-content;
+  border-radius: 12px;
+  overflow: hidden;
+  img {
+    height: 140px;
+    object-fit: cover;
+  }
+  article {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 4px;
+    width: 240px;
+    .contentTitle {
+      @include font-16-24-700;
+      color: $black;
+    }
+    .contentDetails {
+      @include font-16-24-400;
+      @include ellipse;
+      color: $dim-gray;
+      width: 190px;
+    }
+  }
+}

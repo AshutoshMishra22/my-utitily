@@ -1,0 +1,5 @@
+@import './globals.scss';
+
+.primaryTrendingHeading {
+  @include font-22-30-800;
+}
