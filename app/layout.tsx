@@ -1,16 +1,13 @@
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.scss';
-import AppNavigator from './component/AppNavigator/AppNavigator';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import StoreProvider from "./StoreProvider";
 
-const inter = Inter({ subsets: ['latin'] });
-config.autoAddCss = false;
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'MyU',
-  description: 'my utility application',
+  title: "MyU",
+  description: "Utility app",
 };
 
 export default function RootLayout({
@@ -19,13 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={inter.className}>
-        <div className='app-container'>
-          <section className='app-title'>Foodie</section>
-          {children}
-        </div>
-        <AppNavigator />
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );
