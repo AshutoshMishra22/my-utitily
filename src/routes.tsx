@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import Homepage from "./container/Homepage";
-import User from "./container/User";
+import { Homepage, User } from "./container";
 
 export const routeList: Array<Record<string, string | ReactNode>> = [
   {
