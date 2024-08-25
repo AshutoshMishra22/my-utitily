@@ -22,7 +22,7 @@ const Homepage: FC = () => {
 
   useEffect(() => {
     inputValue && getAllLink();
-  }, [inputValue]);
+  }, [inputValue, getAllLink]);
 
   return (
     <div className="container">
@@ -42,7 +42,7 @@ const Homepage: FC = () => {
         <ul className="result-list">
           {searchResult?.map((result) => (
             <li className="result-item" key={`key${result.id}`}>
-              <a href={result.url as string} target="_blank">
+              <a href={result.url as string} target="_blank" rel="noreferrer">
                 <span className="title">{result.author}</span>
                 <span className="tag-list">
                   {(result.tags as string[]).join(", ")}
