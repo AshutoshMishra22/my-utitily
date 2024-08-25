@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navigation.scss";
+import { NAVIGATION_TO_LINK } from "../../constant";
 
 type Props = {};
 
@@ -9,8 +10,9 @@ const Navigation: FC = ({}: Props) => {
     <nav className="navigation-container">
       <img src="" alt="logo" />
       <section className="navigation-item-list">
-        <NavLink to="/">Go to HOMEPAGE</NavLink>
-        <NavLink to="/user">Go to USER</NavLink>
+        {NAVIGATION_TO_LINK.map((obj) => (
+          <NavLink to={obj.to}>{obj.name}</NavLink>
+        ))}
       </section>
     </nav>
   );

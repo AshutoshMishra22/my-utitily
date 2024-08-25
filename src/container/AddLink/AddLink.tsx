@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
-import "./Homepage.scss";
+import "./AddLink.scss";
 
-interface HomepageProptype {}
+interface AddLinkProptype {}
 type LinkResponseType = Record<string, string | string[]>[];
 
-const Homepage: FC = (props: HomepageProptype) => {
+const AddLink: FC = (props: AddLinkProptype) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [searchResult, setSearchResult] = useState<LinkResponseType>();
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -57,4 +57,4 @@ const Homepage: FC = (props: HomepageProptype) => {
   );
 };
 
-export default Homepage;
+export default AddLink;
