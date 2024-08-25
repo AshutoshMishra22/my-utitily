@@ -1,10 +1,9 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import "./Homepage.scss";
 
-interface HomepageProptype {}
 type LinkResponseType = Record<string, string | string[]>[];
 
-const Homepage: FC = (props: HomepageProptype) => {
+const Homepage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [searchResult, setSearchResult] = useState<LinkResponseType>();
   const baseUrl = process.env.REACT_APP_API_BASE_URL;

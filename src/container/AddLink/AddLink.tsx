@@ -1,59 +1,83 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import "./AddLink.scss";
+import { FORM_ADD_LINK_INPUT_NAME, FORM_ADD_TAG_INPUT } from "../../constant";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../feature/store";
+import { postData } from "../../feature/slices/HomepageSlice";
 
 interface AddLinkProptype {}
-type LinkResponseType = Record<string, string | string[]>[];
 
 const AddLink: FC = (props: AddLinkProptype) => {
-  const [inputValue, setInputValue] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<LinkResponseType>();
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
-  const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
+  const [state, setState] = useState<Record<string, string>>({
+    [FORM_ADD_LINK_INPUT_NAME]: "",
+    [FORM_ADD_TAG_INPUT]: "",
+  });
+  const dispatch = useDispatch<AppDispatch>();
 
-  const getAllLink = async () => {
-    fetch(`${baseUrl}/getLink`)
-      .then((response) => response.json())
-      .then((response) => {
-        setSearchResult(response);
-      })
-      .catch((error) => console.log(error));
+  const getClipboard = async () => {
+    try {
+      if (!navigator.clipboard) {
+        throw new Error("Clipboard API not supported");
+      }
+      const text = await navigator.clipboard.readText();
+      text &&
+        setState((prevState) => ({
+          ...prevState,
+          [FORM_ADD_LINK_INPUT_NAME]: text,
+        }));
+    } catch (error) {
+      console.error("Failed to read clipboard contents:", error);
+    }
   };
-
   useEffect(() => {
-    inputValue && getAllLink();
-  }, [inputValue]);
-
+    getClipboard();
+  }, []);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setState((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const handleSubmit = () => {
+    const body = JSON.stringify({
+      author: "anonymous",
+      url: state[FORM_ADD_LINK_INPUT_NAME],
+      id: Math.random(),
+      tags: state[FORM_ADD_TAG_INPUT].split(",").map((tag) =>
+        tag.trim().toLowerCase()
+      ),
+    });
+    dispatch(postData(body));
+  };
   return (
-    <div className="container">
-      <section className="search-container">
-        <input
-          value={inputValue}
-          id="search-input"
-          name="search-input"
-          onChange={handleSearchInput}
-          autoComplete="off"
-          spellCheck="false"
-          placeholder="Search by tags or name"
-          autoFocus
-        />
-      </section>
-      <section className="result-container">
-        <ul className="result-list">
-          {searchResult?.map((result) => (
-            <li className="result-item" key={`key${result.id}`}>
-              <a href={result.url as string} target="_blank">
-                <span className="title">{result.author}</span>
-                <span className="tag-list">
-                  {(result.tags as string[]).join(", ")}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
+    <section className="form-container">
+      <label htmlFor={FORM_ADD_LINK_INPUT_NAME}>URL/Link</label>
+      <input
+        name={FORM_ADD_LINK_INPUT_NAME}
+        id={FORM_ADD_LINK_INPUT_NAME}
+        value={state[FORM_ADD_LINK_INPUT_NAME]}
+        onChange={handleChange}
+        className="form-input"
+        autoComplete="off"
+        spellCheck="false"
+        autoFocus
+      />
+      <input
+        name={FORM_ADD_TAG_INPUT}
+        value={state[FORM_ADD_TAG_INPUT]}
+        onChange={handleChange}
+        className="form-input"
+        autoComplete="off"
+        spellCheck="false"
+      />
+      <button
+        className="form-submit-btn"
+        disabled={!state[FORM_ADD_LINK_INPUT_NAME].length}
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </section>
   );
 };
 

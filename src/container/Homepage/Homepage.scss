@@ -16,9 +16,7 @@
       line-height: 21px;
       padding: 6px 12px;
       border: 2px solid $dim_gray;
-      &:focus-visible {
-        outline: none;
-      }
+
       &:focus {
         border-color: $tomato_red;
       }

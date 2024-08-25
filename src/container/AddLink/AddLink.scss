@@ -1,64 +1,33 @@
 @import "../../index.scss";
 
-.container {
+.form-container {
   display: flex;
-  width: 100%;
   flex-direction: column;
-  .search-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    input {
-      height: 42px;
-      border-radius: 12px;
-      width: 90%;
-      font-size: 1rem;
-      line-height: 21px;
-      padding: 6px 12px;
-      border: 2px solid $dim_gray;
-      &:focus-visible {
-        outline: none;
-      }
-      &:focus {
-        border-color: $tomato_red;
-      }
+  width: min(80%, 500px);
+  margin: auto;
+  align-items: center;
+  gap: 1rem;
+  .form-input {
+    height: 36px;
+    border-radius: 12px;
+    width: 90%;
+    font-size: 1rem;
+    line-height: 21px;
+    padding: 6px 12px;
+    border: 2px solid $dim_gray;
+
+    &:focus {
+      border-color: $tomato_red;
     }
   }
-  .result-container {
-    flex: 1;
-    display: flex;
-    margin-top: 1rem;
-    .result-list {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      .result-item {
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        list-style: none;
-        width: 100%;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 18px;
-        border: 1px solid $white_smoke;
-        margin: 4px 0;
-        a {
-          text-decoration: none;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          &:visited {
-            color: currentColor;
-          }
-          .title {
-            font-weight: bold;
-          }
-          .tag-list {
-            font-style: italic;
-          }
-        }
-      }
+  .form-submit-btn {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    background-color: inherit;
+    border-radius: 12px;
+    border: 2px solid $black;
+    &:disabled {
+      border-color: $mistyrose;
     }
   }
 }

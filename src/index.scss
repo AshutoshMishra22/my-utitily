@@ -14,7 +14,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+input {
+  &:focus-visible {
+    outline: none;
+  }
+}
 $white: #ffffff;
 $black: #161823;
 $ghost_white: #f8f8fb;
