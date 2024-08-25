@@ -17,7 +17,7 @@ const Homepage: FC = () => {
       .then((response) => {
         setSearchResult(response);
       })
-      .catch((error) => console.log(error));
+      .catch(() => {});
   };
 
   useEffect(() => {
