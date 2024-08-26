@@ -6,12 +6,12 @@ import { AppDispatch } from "../../feature/store";
 import { postDataApi } from "../../feature/slices/HomepageSlice";
 
 interface AddLinkProptype {}
-
+const initialState = {
+  [FORM_ADD_LINK_INPUT_NAME]: "",
+  [FORM_ADD_TAG_INPUT]: "",
+};
 const AddLink: FC = (props: AddLinkProptype) => {
-  const [state, setState] = useState<Record<string, string>>({
-    [FORM_ADD_LINK_INPUT_NAME]: "",
-    [FORM_ADD_TAG_INPUT]: "",
-  });
+  const [state, setState] = useState<Record<string, string>>(initialState);
   const dispatch = useDispatch<AppDispatch>();
 
   const getClipboard = async () => {
@@ -48,6 +48,7 @@ const AddLink: FC = (props: AddLinkProptype) => {
       ),
     });
     dispatch(postDataApi(body));
+    setState(initialState);
   };
   return (
     <section className="form-container">
