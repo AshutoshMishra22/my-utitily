@@ -5,7 +5,7 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export const postData = createAsyncThunk(
   "user/postData",
-  async (body: string, { extra }) => {
+  async (body: string) => {
     const response = await fetch(`${baseUrl}/addLink`, {
       method: "POST",
       headers: {
@@ -16,6 +16,10 @@ export const postData = createAsyncThunk(
     return response.json();
   }
 );
+export const getAllLink = createAsyncThunk("user/getLink", async () => {
+  const response = await fetch(`${baseUrl}/getLink`);
+  return response.json();
+});
 
 export interface State {
   value: number;
@@ -50,6 +54,17 @@ export const homepageSlice = createSlice({
     builder.addCase(postData.fulfilled, (state, action) => {
       state.isLoading = false;
       state.urlList = action.payload;
+    });
+    builder.addCase(getAllLink.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getAllLink.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.urlList = action.payload;
+    });
+    builder.addCase(getAllLink.rejected, (state) => {
+      state.isLoading = false;
+      state.urlList = [];
     });
   },
 });

@@ -1,29 +1,19 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import "./Homepage.scss";
-
-type LinkResponseType = Record<string, string | string[]>[];
+import { getAllLink } from "../../feature/slices/HomepageSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../feature/store";
 
 const Homepage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<LinkResponseType>();
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  const dispatch = useDispatch<AppDispatch>();
+  const { urlList: searchResult } = useSelector(
+    (state: RootState) => state.Homepage
+  );
   const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
-  const getAllLink = async () => {
-    fetch(`${baseUrl}/getLink`)
-      .then((response) => response.json())
-      .then((response) => {
-        setSearchResult(response);
-      })
-      .catch(() => {});
-  };
-
-  useEffect(() => {
-    inputValue && getAllLink();
-  }, [inputValue, getAllLink]);
-
+  dispatch(getAllLink());
   return (
     <div className="container">
       <section className="search-container">
