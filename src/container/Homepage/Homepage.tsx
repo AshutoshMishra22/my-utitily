@@ -1,6 +1,6 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import "./Homepage.scss";
-import { getAllLink } from "../../feature/slices/HomepageSlice";
+import { getLinkApi } from "../../feature/slices/HomepageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../feature/store";
 
@@ -13,7 +13,12 @@ const Homepage: FC = () => {
   const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  dispatch(getAllLink());
+  const getLink = () => dispatch(getLinkApi());
+
+  useEffect(() => {
+    getLink();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="container">
       <section className="search-container">

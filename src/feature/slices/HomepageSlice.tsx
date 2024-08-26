@@ -3,8 +3,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-export const postData = createAsyncThunk(
-  "user/postData",
+export const postDataApi = createAsyncThunk(
+  "user/postDataApi",
   async (body: string) => {
     const response = await fetch(`${baseUrl}/addLink`, {
       method: "POST",
@@ -16,7 +16,7 @@ export const postData = createAsyncThunk(
     return response.json();
   }
 );
-export const getAllLink = createAsyncThunk("user/getLink", async () => {
+export const getLinkApi = createAsyncThunk("user/getLink", async () => {
   const response = await fetch(`${baseUrl}/getLink`);
   return response.json();
 });
@@ -48,21 +48,21 @@ export const homepageSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(postData.pending, (state) => {
+    builder.addCase(postDataApi.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(postData.fulfilled, (state, action) => {
+    builder.addCase(postDataApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.urlList = action.payload;
     });
-    builder.addCase(getAllLink.pending, (state) => {
+    builder.addCase(getLinkApi.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getAllLink.fulfilled, (state, action) => {
+    builder.addCase(getLinkApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.urlList = action.payload;
     });
-    builder.addCase(getAllLink.rejected, (state) => {
+    builder.addCase(getLinkApi.rejected, (state) => {
       state.isLoading = false;
       state.urlList = [];
     });

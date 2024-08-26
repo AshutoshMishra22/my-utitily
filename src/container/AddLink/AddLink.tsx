@@ -3,7 +3,7 @@ import "./AddLink.scss";
 import { FORM_ADD_LINK_INPUT_NAME, FORM_ADD_TAG_INPUT } from "../../constant";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../feature/store";
-import { postData } from "../../feature/slices/HomepageSlice";
+import { postDataApi } from "../../feature/slices/HomepageSlice";
 
 interface AddLinkProptype {}
 
@@ -47,7 +47,7 @@ const AddLink: FC = (props: AddLinkProptype) => {
         tag.trim().toLowerCase()
       ),
     });
-    dispatch(postData(body));
+    dispatch(postDataApi(body));
   };
   return (
     <section className="form-container">
