@@ -53,18 +53,12 @@
       "label": "MyUtility PWA"
     }
   ],
-  "shortcuts": [
-    {
-      "name": "Share PWA",
-      "short_name": "Share",
-      "description": "Share application",
-      "url": "https://myutilitypwa.netlify.app/",
-      "icons": [
-        {
-          "src": "android-chrome-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
+  "share_target": {
+    "action": "share_page",
+    "params": {
+      "title": "share MyU",
+      "text": "share MyU PWA",
+      "url": "https://myutilitypwa.netlify.app/"
     }
-  ]
+  }
 }
