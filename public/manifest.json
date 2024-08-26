@@ -1,6 +1,10 @@
 {
   "short_name": "MyU",
   "name": "MyUtility application",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "favicon.ico",
@@ -49,8 +53,18 @@
       "label": "MyUtility PWA"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "shortcuts": [
+    {
+      "name": "Add Link",
+      "short_name": "+Link",
+      "description": "Add link to application",
+      "url": "/add-link",
+      "icons": [
+        {
+          "src": "android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
 }
