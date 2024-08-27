@@ -15,6 +15,7 @@ const Homepage: FC = () => {
   const { urlList: searchResult } = useSelector(
     (state: RootState) => state.Homepage
   );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const dispatchSearch = useCallback(debounce(dispatch), []);
 
   const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
