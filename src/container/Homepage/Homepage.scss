@@ -58,6 +58,20 @@
             font-style: italic;
           }
         }
+        .result-delete-btn {
+          background-color: inherit;
+          border: 1px solid $tomato_red;
+          padding: 8px;
+          border-radius: 12px;
+          color: currentColor;
+          cursor: pointer;
+          &:disabled {
+            background-color: $silver;
+            border-color: $silver;
+            color: $dim_gray;
+            cursor: auto;
+          }
+        }
       }
     }
   }

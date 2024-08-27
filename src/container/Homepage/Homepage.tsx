@@ -1,8 +1,13 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import "./Homepage.scss";
-import { getLinkApi } from "../../feature/slices/HomepageSlice";
+import {
+  deleteDataApi,
+  getAllLinkApi,
+  getLinkApi,
+} from "../../feature/slices/HomepageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../feature/store";
+import { debounce } from "../../utils";
 
 const Homepage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -10,13 +15,14 @@ const Homepage: FC = () => {
   const { urlList: searchResult } = useSelector(
     (state: RootState) => state.Homepage
   );
+  const dispatchSearch = useCallback(debounce(dispatch), []);
+
   const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
+    dispatchSearch(getLinkApi(JSON.stringify({ filter: e.target.value })));
   };
-  const getLink = () => dispatch(getLinkApi());
-
   useEffect(() => {
-    getLink();
+    dispatch(getAllLinkApi());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -43,6 +49,13 @@ const Homepage: FC = () => {
                   {(result.tags as string[]).join(", ")}
                 </span>
               </a>
+              <button
+                className="result-delete-btn"
+                onClick={() => dispatch(deleteDataApi(JSON.stringify(result)))}
+                disabled
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>

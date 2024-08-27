@@ -6,5 +6,11 @@ const NAVIGATION_TO_LINK = [
 
 const FORM_ADD_LINK_INPUT_NAME = "form-add-link-input";
 const FORM_ADD_TAG_INPUT = "form-add-tag-input";
+const FORM_ADD_AUTHOR_INPUT = "form-add-author-input";
 
-export { NAVIGATION_TO_LINK, FORM_ADD_LINK_INPUT_NAME, FORM_ADD_TAG_INPUT };
+export {
+  NAVIGATION_TO_LINK,
+  FORM_ADD_LINK_INPUT_NAME,
+  FORM_ADD_TAG_INPUT,
+  FORM_ADD_AUTHOR_INPUT,
+};
