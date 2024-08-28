@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import HomepageSlice from "./slices/HomepageSlice";
+import globalSliceReducer from "./slices/globalSlice";
 
 export const store = configureStore({
-  reducer: { Homepage: HomepageSlice },
+  reducer: { global: globalSliceReducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -5,9 +5,9 @@ const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 // Add new link
 export const postDataApi = createAsyncThunk(
-  "user/postDataApi",
+  "utility-link/postDataApi",
   async (body: string) => {
-    const response = await fetch(`${baseUrl}/addLink`, {
+    const response = await fetch(`${baseUrl}/utility-link/addLink`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,9 +19,9 @@ export const postDataApi = createAsyncThunk(
 );
 // Delete particular link
 export const deleteDataApi = createAsyncThunk(
-  "user/deleteDataApi",
+  "utility-link/deleteDataApi",
   async (body: string) => {
-    const response = await fetch(`${baseUrl}/deleteLink`, {
+    const response = await fetch(`${baseUrl}/utility-link/deleteLink`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -32,15 +32,18 @@ export const deleteDataApi = createAsyncThunk(
   }
 );
 // Retrive all link
-export const getAllLinkApi = createAsyncThunk("user/getAllLink", async () => {
-  const response = await fetch(`${baseUrl}/getAllLink`);
-  return response.json();
-});
+export const getAllLinkApi = createAsyncThunk(
+  "utility-link/getAllLink",
+  async () => {
+    const response = await fetch(`${baseUrl}/utility-link/getAllLink`);
+    return response.json();
+  }
+);
 // Retrive Search specific link
 export const getLinkApi = createAsyncThunk(
-  "user/getLink",
+  "utility-link/getLink",
   async (body: string) => {
-    const response = await fetch(`${baseUrl}/getLink`, {
+    const response = await fetch(`${baseUrl}/utility-link/getLink`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,6 +54,7 @@ export const getLinkApi = createAsyncThunk(
   }
 );
 
+// Slice definition
 export interface State {
   value: number;
   isLoading: boolean;
@@ -63,8 +67,8 @@ const initialState: State = {
   urlList: [],
 };
 
-export const homepageSlice = createSlice({
-  name: "Homepage",
+export const globalSlice = createSlice({
+  name: "global",
   initialState,
   reducers: {
     increment: (state) => {
@@ -121,7 +125,6 @@ export const homepageSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } =
-  homepageSlice.actions;
+export const { increment, decrement, incrementByAmount } = globalSlice.actions;
 
-export default homepageSlice.reducer;
+export default globalSlice.reducer;

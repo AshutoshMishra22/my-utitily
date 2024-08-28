@@ -7,7 +7,7 @@ import {
 } from "../../constant";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../feature/store";
-import { postDataApi } from "../../feature/slices/HomepageSlice";
+import { postDataApi } from "../../feature/slices/globalSlice";
 
 interface InitialStateInterface {
   [FORM_ADD_LINK_INPUT_NAME]: string;

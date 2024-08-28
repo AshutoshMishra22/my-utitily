@@ -4,7 +4,7 @@ import {
   deleteDataApi,
   getAllLinkApi,
   getLinkApi,
-} from "../../feature/slices/HomepageSlice";
+} from "../../feature/slices/globalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../feature/store";
 import { debounce } from "../../utils";
@@ -13,7 +13,7 @@ const Homepage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
   const { urlList: searchResult } = useSelector(
-    (state: RootState) => state.Homepage
+    (state: RootState) => state.global
   );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dispatchSearch = useCallback(debounce(dispatch), []);
