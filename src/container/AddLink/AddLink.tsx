@@ -48,14 +48,14 @@ const AddLink: FC = () => {
     }));
 
   const handleSubmit = () => {
-    const body = JSON.stringify({
+    const body = {
       author: "anonymous",
       url: state[FORM_ADD_LINK_INPUT_NAME],
       id: Math.random(),
       tags: state[FORM_ADD_TAG_INPUT].split(",").map((tag) =>
         tag.trim().toLowerCase()
       ),
-    });
+    };
     dispatch(postDataApi(body));
     setState(initialState);
   };

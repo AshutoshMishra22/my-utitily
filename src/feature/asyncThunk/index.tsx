@@ -1,67 +1,35 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
-
+import { requestAPI } from "../../utils";
 // Add new link
 export const postDataApi = createAsyncThunk(
   "utility-link/postDataApi",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/addLink`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
+  async (body: Record<any, any>) =>
+    requestAPI("/utility-link/addLink", body, "POST")
 );
 // Delete particular link
 export const deleteDataApi = createAsyncThunk(
   "utility-link/deleteDataApi",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/deleteLink`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
+  async (body: Record<any, any>) =>
+    requestAPI("/utility-link/deleteLink", body, "DELETE")
 );
 // Retrive all link
 export const getAllLinkApi = createAsyncThunk(
   "utility-link/getAllLink",
-  async () => {
-    const response = await fetch(`${baseUrl}/utility-link/getAllLink`);
-    return response.json();
-  }
+  async () => requestAPI("/utility-link/getAllLink")
 );
 // Retrive Search specific link
 export const getLinkApi = createAsyncThunk(
   "utility-link/getLink",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/getLink`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
+  async (body: Record<any, any>) =>
+    requestAPI("/utility-link/getAllLink", body, "POST")
 );
 // Sign Up user
 export const postSignUpUser = createAsyncThunk(
   "auth/signup",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
+  async (body: Record<any, any>) => requestAPI("/auth/signup", body, "POST")
+);
+// Sign In user
+export const postSignInUser = createAsyncThunk(
+  "auth/signup",
+  async (body: Record<any, any>) => requestAPI("/auth/signin", body, "POST")
 );

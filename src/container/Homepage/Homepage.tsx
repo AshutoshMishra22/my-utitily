@@ -5,7 +5,7 @@ import {
   getAllLinkApi,
   getLinkApi,
 } from "../../feature/asyncThunk";
-import { RootState, useAppDispatch, useAppSelector } from "../../feature/store";
+import { useAppDispatch, useAppSelector } from "../../feature/store";
 import { debounce } from "../../utils";
 
 const Homepage: FC = () => {
@@ -17,7 +17,7 @@ const Homepage: FC = () => {
 
   const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    dispatchSearch(getLinkApi(JSON.stringify({ filter: e.target.value })));
+    dispatchSearch(getLinkApi({ filter: e.target.value }));
   };
   useEffect(() => {
     dispatch(getAllLinkApi());
@@ -49,8 +49,7 @@ const Homepage: FC = () => {
               </a>
               <button
                 className="result-delete-btn"
-                onClick={() => dispatch(deleteDataApi(JSON.stringify(result)))}
-                disabled
+                onClick={() => dispatch(deleteDataApi(result))}
               >
                 Delete
               </button>

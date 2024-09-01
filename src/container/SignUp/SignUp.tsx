@@ -47,7 +47,7 @@ const SignUp: FC = () => {
         email: data[FORM_SIGN_UP_EMAIL],
         password: data[FORM_SIGN_UP_PASSWORD],
       };
-      dispatch(postSignUpUser(JSON.stringify(payload)));
+      dispatch(postSignUpUser(payload));
     } else {
       setState((prevState) => ({
         ...prevState,

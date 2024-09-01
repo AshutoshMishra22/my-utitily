@@ -4,6 +4,7 @@ import {
   getAllLinkApi,
   getLinkApi,
   postDataApi,
+  postSignInUser,
   postSignUpUser,
 } from "../asyncThunk";
 
@@ -66,14 +67,14 @@ export const globalSlice = createSlice({
     builder.addCase(getLinkApi.rejected, (state) => {
       state.isLoading = false;
     });
-    builder.addCase(postSignUpUser.pending, (state) => {
+    builder.addCase(postSignInUser.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(postSignUpUser.fulfilled, (state, action) => {
+    builder.addCase(postSignInUser.fulfilled, (state, action) => {
       state.isLoading = false;
       state.userDetails = action.payload;
     });
-    builder.addCase(postSignUpUser.rejected, (state) => {
+    builder.addCase(postSignInUser.rejected, (state) => {
       state.isLoading = false;
       state.userDetails = {};
     });
