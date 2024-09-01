@@ -7,9 +7,11 @@ import {
 } from "../../feature/asyncThunk";
 import { useAppDispatch, useAppSelector } from "../../feature/store";
 import { debounce } from "../../utils";
+import { useAuth } from "../../component/AuthContext";
 
 const Homepage: FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
+  const { isAuthenticated } = useAuth();
   const dispatch = useAppDispatch();
   const { urlList: searchResult } = useAppSelector((state) => state.global);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,6 +52,7 @@ const Homepage: FC = () => {
               <button
                 className="result-delete-btn"
                 onClick={() => dispatch(deleteDataApi(result))}
+                disabled={!isAuthenticated}
               >
                 Delete
               </button>

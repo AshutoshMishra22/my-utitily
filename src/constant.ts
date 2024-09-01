@@ -1,7 +1,13 @@
 const NAVIGATION_TO_LINK = [
   { to: "/", name: "home" },
   { to: "/add-link", name: "add link" },
+];
+const NAVIGATION_TO_LINK_AUTH = [
+  ...NAVIGATION_TO_LINK,
   { to: "/user", name: "user" },
+];
+const NAVIGATION_TO_LINK_GUEST = [
+  ...NAVIGATION_TO_LINK,
   { to: "/signup", name: "SignUp" },
   { to: "/signin", name: "SignIn" },
 ];
@@ -13,8 +19,10 @@ const FORM_SIGN_UP_FULL_NAME = "form-sign-up-full-name";
 const FORM_SIGN_UP_EMAIL = "form-sign-up-email";
 const FORM_SIGN_UP_PASSWORD = "form-sign-up-password";
 const FORM_SIGN_UP_RE_TYPE_PASSWORD = "form-sign-up-re-type-password";
+
 export {
-  NAVIGATION_TO_LINK,
+  NAVIGATION_TO_LINK_AUTH,
+  NAVIGATION_TO_LINK_GUEST,
   FORM_ADD_LINK_INPUT_NAME,
   FORM_ADD_TAG_INPUT,
   FORM_ADD_AUTHOR_INPUT,
