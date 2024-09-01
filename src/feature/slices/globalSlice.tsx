@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   deleteDataApi,
   getAllLinkApi,
@@ -8,16 +8,20 @@ import {
   postSignUpUser,
 } from "../asyncThunk";
 
+type messageType = "ERROR" | "SUCCESS";
 // Slice definition
 export interface State {
-  value: number;
+  message: {
+    text: string;
+    type?: messageType;
+  };
   isLoading: boolean;
   urlList: Record<string, any>[];
   userDetails: Record<string, any>;
 }
 
 const initialState: State = {
-  value: 0,
+  message: { text: "", type: undefined },
   isLoading: false,
   urlList: [],
   userDetails: {},
@@ -26,7 +30,11 @@ const initialState: State = {
 export const globalSlice = createSlice({
   name: "global",
   initialState,
-  reducers: {},
+  reducers: {
+    updateMessage: (state) => {
+      state.message = initialState.message;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postDataApi.pending, (state) => {
       state.isLoading = true;
@@ -78,10 +86,25 @@ export const globalSlice = createSlice({
       state.isLoading = false;
       state.userDetails = {};
     });
+    builder.addCase(postSignUpUser.pending, (state) => {
+      state.isLoading = true;
+      state.message = initialState.message;
+    });
+    builder.addCase(postSignUpUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.message = {
+        text: action.payload.message,
+        type: action.payload.success ? "SUCCESS" : "ERROR",
+      };
+    });
+    builder.addCase(postSignUpUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.message = { text: "", type: "ERROR" };
+    });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {} = globalSlice.actions;
+export const { updateMessage } = globalSlice.actions;
 
 export default globalSlice.reducer;

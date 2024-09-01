@@ -1,5 +1,5 @@
 import { Homepage, User, AddLink, SignUp, SignIn } from "./container";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 export const routeList = (
   <Routes>
@@ -8,5 +8,6 @@ export const routeList = (
     <Route path="/user" element={<User />} />
     <Route path="/signup" element={<SignUp />} />
     <Route path="/signin" element={<SignIn />} />
+    <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

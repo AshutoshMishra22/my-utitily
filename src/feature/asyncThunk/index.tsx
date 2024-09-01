@@ -30,6 +30,6 @@ export const postSignUpUser = createAsyncThunk(
 );
 // Sign In user
 export const postSignInUser = createAsyncThunk(
-  "auth/signup",
+  "auth/signin",
   async (body: Record<any, any>) => requestAPI("/auth/signin", body, "POST")
 );

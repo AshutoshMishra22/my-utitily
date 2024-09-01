@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, FormEvent } from "react";
+import { FC, useState, ChangeEvent, FormEvent, useEffect } from "react";
 import {
   FORM_SIGN_UP_EMAIL,
   FORM_SIGN_UP_FULL_NAME,
@@ -6,8 +6,9 @@ import {
   FORM_SIGN_UP_RE_TYPE_PASSWORD,
 } from "../../constant";
 import "./SignUp.scss";
-import { useAppDispatch } from "../../feature/store";
+import { useAppDispatch, useAppSelector } from "../../feature/store";
 import { postSignUpUser } from "../../feature/asyncThunk";
+import { Navigate } from "react-router-dom";
 
 type formInputFieldProp = {
   value: string | number | readonly string[];
@@ -28,6 +29,7 @@ const initialState: InitialStateInterface = {
 
 const SignUp: FC = () => {
   const [state, setState] = useState<InitialStateInterface>(initialState);
+  const { message } = useAppSelector((state) => state.global);
   const dispatch = useAppDispatch();
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setState((prevState) => ({
@@ -56,6 +58,16 @@ const SignUp: FC = () => {
       }));
     }
   };
+
+  if (message.text) {
+    console.log(
+      "REDIRECTING TO ",
+      message.type === "SUCCESS" ? "/signin" : "/test"
+    );
+    return (
+      <Navigate to={message.type === "SUCCESS" ? "/signin" : "/test"} replace />
+    );
+  }
   return (
     <form className="signup-form-container" onSubmit={handleSubmit}>
       <label>Full Name *</label>
@@ -109,6 +121,7 @@ const SignUp: FC = () => {
       <button type="submit" className="form-signup-submit-btn">
         SignUp
       </button>
+      
     </form>
   );
 };

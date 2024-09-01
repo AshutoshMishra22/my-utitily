@@ -1,3 +1,5 @@
+@import "./index.scss";
+
 .app-container {
   padding: 1rem;
   .app-loader {
@@ -5,5 +7,29 @@
     position: fixed;
     top: 40%;
     left: 40%;
+  }
+  .app-message-container {
+    position: fixed;
+    bottom: 68px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .app-message {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      width: 50%;
+      text-align: center;
+      color: $white;
+      text-transform: capitalize;
+      &:empty {
+        display: none;
+      }
+      &.success {
+        background-color: $green;
+      }
+      &.error {
+        background-color: $tomato_red;
+      }
+    }
   }
 }
