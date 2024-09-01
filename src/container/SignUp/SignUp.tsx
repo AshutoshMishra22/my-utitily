@@ -59,14 +59,8 @@ const SignUp: FC = () => {
     }
   };
 
-  if (message.text) {
-    console.log(
-      "REDIRECTING TO ",
-      message.type === "SUCCESS" ? "/signin" : "/test"
-    );
-    return (
-      <Navigate to={message.type === "SUCCESS" ? "/signin" : "/test"} replace />
-    );
+  if (message.type === "SUCCESS") {
+    return <Navigate to="/signin" replace />;
   }
   return (
     <form className="signup-form-container" onSubmit={handleSubmit}>
@@ -121,7 +115,6 @@ const SignUp: FC = () => {
       <button type="submit" className="form-signup-submit-btn">
         SignUp
       </button>
-      
     </form>
   );
 };

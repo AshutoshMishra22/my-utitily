@@ -94,7 +94,7 @@ export const globalSlice = createSlice({
       state.isLoading = false;
       state.message = {
         text: action.payload.message,
-        type: action.payload.success ? "SUCCESS" : "ERROR",
+        type: action.payload.success !== "ERROR" ? "SUCCESS" : "ERROR",
       };
     });
     builder.addCase(postSignUpUser.rejected, (state, action) => {
