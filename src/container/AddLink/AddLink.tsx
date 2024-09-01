@@ -5,9 +5,8 @@ import {
   FORM_ADD_LINK_INPUT_NAME,
   FORM_ADD_TAG_INPUT,
 } from "../../constant";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../feature/store";
-import { postDataApi } from "../../feature/slices/globalSlice";
+import { useAppDispatch } from "../../feature/store";
+import { postDataApi } from "../../feature/asyncThunk";
 
 interface InitialStateInterface {
   [FORM_ADD_LINK_INPUT_NAME]: string;
@@ -21,7 +20,7 @@ const initialState: InitialStateInterface = {
 };
 const AddLink: FC = () => {
   const [state, setState] = useState<InitialStateInterface>(initialState);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const getClipboard = async () => {
     try {

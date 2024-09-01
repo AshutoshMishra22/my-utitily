@@ -1,86 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
-
-// Add new link
-export const postDataApi = createAsyncThunk(
-  "utility-link/postDataApi",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/addLink`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
-);
-// Delete particular link
-export const deleteDataApi = createAsyncThunk(
-  "utility-link/deleteDataApi",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/deleteLink`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
-);
-// Retrive all link
-export const getAllLinkApi = createAsyncThunk(
-  "utility-link/getAllLink",
-  async () => {
-    const response = await fetch(`${baseUrl}/utility-link/getAllLink`);
-    return response.json();
-  }
-);
-// Retrive Search specific link
-export const getLinkApi = createAsyncThunk(
-  "utility-link/getLink",
-  async (body: string) => {
-    const response = await fetch(`${baseUrl}/utility-link/getLink`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    return response.json();
-  }
-);
+import {
+  deleteDataApi,
+  getAllLinkApi,
+  getLinkApi,
+  postDataApi,
+  postSignUpUser,
+} from "../asyncThunk";
 
 // Slice definition
 export interface State {
   value: number;
   isLoading: boolean;
   urlList: Record<string, any>[];
+  userDetails: Record<string, any>;
 }
 
 const initialState: State = {
   value: 0,
   isLoading: false,
   urlList: [],
+  userDetails: {},
 };
 
 export const globalSlice = createSlice({
   name: "global",
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(postDataApi.pending, (state) => {
       state.isLoading = true;
@@ -121,10 +66,21 @@ export const globalSlice = createSlice({
     builder.addCase(getLinkApi.rejected, (state) => {
       state.isLoading = false;
     });
+    builder.addCase(postSignUpUser.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(postSignUpUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.userDetails = action.payload;
+    });
+    builder.addCase(postSignUpUser.rejected, (state) => {
+      state.isLoading = false;
+      state.userDetails = {};
+    });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = globalSlice.actions;
+export const {} = globalSlice.actions;
 
 export default globalSlice.reducer;
