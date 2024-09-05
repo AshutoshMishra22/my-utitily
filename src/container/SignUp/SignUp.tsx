@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { FC, useState, ChangeEvent, FormEvent } from "react";
 import {
   FORM_SIGN_UP_EMAIL,
   FORM_SIGN_UP_FULL_NAME,

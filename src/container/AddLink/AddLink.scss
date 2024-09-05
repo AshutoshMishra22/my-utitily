@@ -14,18 +14,22 @@
     font-size: 1rem;
     line-height: 21px;
     padding: 6px 12px;
-    border: 2px solid $dim_gray;
-
-    &:focus {
-      border-color: $tomato_red;
-    }
   }
   .form-submit-btn {
-    width: fit-content;
-    padding: 0.5rem 1rem;
-    background-color: inherit;
-    border-radius: 12px;
-    border: 2px solid $black;
+    width: 90%;
+    padding: 0.75rem;
+    background-color: rgb(41, 82, 227);
+    border-radius: 9999px;
+    border: none;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: $white;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    &:hover {
+      background-color: rgb(37, 70, 189);
+    }
     &:disabled {
       border-color: $mistyrose;
     }

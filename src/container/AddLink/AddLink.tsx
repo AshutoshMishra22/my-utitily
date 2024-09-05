@@ -63,6 +63,7 @@ const AddLink: FC = () => {
     <section className="form-container">
       <label htmlFor={FORM_ADD_LINK_INPUT_NAME}>URL/Link</label>
       <input
+        type="text"
         name={FORM_ADD_LINK_INPUT_NAME}
         id={FORM_ADD_LINK_INPUT_NAME}
         value={state[FORM_ADD_LINK_INPUT_NAME]}
@@ -74,6 +75,7 @@ const AddLink: FC = () => {
       />
       <label htmlFor={FORM_ADD_TAG_INPUT}>Tags/Keywords</label>
       <input
+        type="text"
         name={FORM_ADD_TAG_INPUT}
         value={state[FORM_ADD_TAG_INPUT]}
         onChange={handleChange}

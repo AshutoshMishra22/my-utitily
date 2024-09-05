@@ -1,22 +1,15 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navigation.scss";
-import {
-  NAVIGATION_TO_LINK_AUTH,
-  NAVIGATION_TO_LINK_GUEST,
-} from "../../constant";
-import { useAuth } from "../AuthContext";
+import { NAVIGATION_TO_LINK_AUTH } from "../../constant";
+import logo from "../../assets/Krypt-logos_transparent.png";
 
 const Navigation: FC = () => {
-  const { isAuthenticated } = useAuth();
-  const availableRoutes = isAuthenticated
-    ? NAVIGATION_TO_LINK_AUTH
-    : NAVIGATION_TO_LINK_GUEST;
   return (
     <nav className="navigation-container">
-      <img src="" alt="logo" />
+      <img src={logo} alt="logo" width="192px" />
       <section className="navigation-item-list">
-        {availableRoutes.map((obj) => (
+        {NAVIGATION_TO_LINK_AUTH.map((obj) => (
           <NavLink to={obj.to} key={obj.to}>
             {obj.name}
           </NavLink>

@@ -2,6 +2,15 @@
 
 .app-container {
   padding: 1rem;
+  background-color: #0f0e13;
+  background-image: radial-gradient(
+      at 0% 0%,
+      rgb(16, 15, 21) 0,
+      transparent 50%
+    ),
+    radial-gradient(at 50% 0%, #2f3e6a 0, transparent 50%),
+    radial-gradient(at 100% 0%, #722741 0, transparent 50%);
+  min-height: 100vh;
   .app-loader {
     height: 100px;
     position: fixed;
@@ -30,6 +39,29 @@
       &.error {
         background-color: $tomato_red;
       }
+    }
+  }
+  label {
+    color: $white_smoke;
+  }
+  input[type="text"] {
+    height: 42px;
+    width: 90%;
+    font-size: 1rem;
+    line-height: 21px;
+    padding: 6px 12px;
+    background: rgb(39, 51, 89, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #0003;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: rgb(255 255 255);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    &:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 0 0px var(#fff), 0 0 0 0 1px var(#2563eb), 0 0 #0000;
+      border-color: #2563eb;
     }
   }
 }

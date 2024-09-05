@@ -10,13 +10,17 @@ function debounce(func) {
 }
 async function requestAPI(url, body, method = "GET", headers) {
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
-  let options = { headers: { ...headers } };
-  const cookies = document.cookie;
-  console.log(" cookies ", cookies, url);
+  let options = {
+    headers: {
+      ...headers,
+      ...(document.cookie ? { cookies: document.cookie } : {}),
+    },
+  };
   if (method !== "GET") {
+    console.log(">>> ", options);
     options = {
       headers: {
-        ...headers,
+        ...options.headers,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -26,6 +30,7 @@ async function requestAPI(url, body, method = "GET", headers) {
     method: method ?? "GET",
     ...options,
   });
+
   return response.json();
 }
 export { debounce, requestAPI };

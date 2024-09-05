@@ -1,2 +1,31 @@
 @import "../../index.scss";
 
+.signin-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  input {
+    height: 36px;
+    border-radius: 12px;
+    width: 50%;
+    font-size: 1rem;
+    line-height: 21px;
+    padding: 6px 12px;
+    border: 2px solid $dim_gray;
+    &.error {
+      border-color: $tomato_red;
+    }
+  }
+  .form-signin-submit-btn {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    background-color: inherit;
+    border-radius: 12px;
+    border: 2px solid $black;
+    &:disabled {
+      border-color: $mistyrose;
+    }
+  }
+}
