@@ -29,6 +29,7 @@ const Homepage: FC = () => {
     <div className="container">
       <section className="search-container">
         <input
+          type="text"
           value={inputValue}
           id="search-input"
           name="search-input"
