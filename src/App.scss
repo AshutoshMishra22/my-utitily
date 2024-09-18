@@ -69,5 +69,10 @@
   .container .search-container input {
     font-size: 14px;
     line-height: 18px;
+    zoom: 1;
+    &:not(:focus, :focus-within, :focus-visible) {
+      color: red;
+      zoom: 1;
+    }
   }
 }
